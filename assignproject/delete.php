@@ -5,28 +5,22 @@
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
-    include_once '../class/Role.php';
     include_once '../config/database.php';
+    include_once '../class/asspro.php';
     
     $database = new Database();
     $db = $database->getConnection();
     
-    $item = new Role($db);
+    $item = new Asspro($db);
     
     $data = json_decode(file_get_contents("php://input"));
     
-    $item->roleid = $data->roleid;
-    // employee values
-    $item->adminid = $data->adminid;
-    $item->managerid = $data->managerid;
-    $item->clientid = $data->clientid;
-    $item->employeeid= $data->employeeid; 
+    // $item->id = $data->id;
+    // $item->uid = $data->uid;
     
-    if($item->updateRoles()){
-        echo json_encode("Employee data updated.");
-
+    if($item->deleteUsers()){
+        echo json_encode("Employee deleted.");
     } else{
-        echo json_encode("Data could not be updated");
-     
+        echo json_encode("Data could not be deleted");
     }
 ?>

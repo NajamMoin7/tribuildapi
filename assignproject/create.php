@@ -4,29 +4,24 @@
     header("Access-Control-Allow-Methods: POST");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-    
-    include_once '../class/Role.php';
     include_once '../config/database.php';
-    
+    include_once '../class/asspro.php';
     $database = new Database();
     $db = $database->getConnection();
-    
-    $item = new Role($db);
-    
+    $item = new Asspro($db);
     $data = json_decode(file_get_contents("php://input"));
-    
-    $item->roleid = $data->roleid;
-    // employee values
-    $item->adminid = $data->adminid;
     $item->managerid = $data->managerid;
-    $item->clientid = $data->clientid;
-    $item->employeeid= $data->employeeid; 
+    $item->employeeid = $data->employeeid;
+    $item->adminid = $data->adminid;
+    $item->pid = $data->pid;
     
-    if($item->updateRoles()){
-        echo json_encode("Employee data updated.");
-
+    if($item->createAssPro()){
+        echo 'Employee created successfully.';
+         
     } else{
-        echo json_encode("Data could not be updated");
-     
+        echo 'Employee could not be created.';
+        
+        
     }
 ?>
+

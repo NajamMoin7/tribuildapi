@@ -5,28 +5,31 @@
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
-    include_once '../class/Role.php';
+    include_once '../class/Project.php';
     include_once '../config/database.php';
     
     $database = new Database();
     $db = $database->getConnection();
     
-    $item = new Role($db);
+    $item = new Project($db);
     
     $data = json_decode(file_get_contents("php://input"));
     
-    $item->roleid = $data->roleid;
+    $item->pid = $data->pid;
+    
     // employee values
-    $item->adminid = $data->adminid;
-    $item->managerid = $data->managerid;
-    $item->clientid = $data->clientid;
-    $item->employeeid= $data->employeeid; 
+    $item->uid = $data->uid;
+    $item->pname = $data->pname;
+    $item->pdes = $data->pdes;
+    $item->pfiles = $data->pfiles;
+    $item->pstartdate = $data->pstartdate; 
+    $item->penddate = $data->penddate; 
     
     if($item->updateRoles()){
         echo json_encode("Employee data updated.");
 
     } else{
         echo json_encode("Data could not be updated");
-     
+      
     }
 ?>
