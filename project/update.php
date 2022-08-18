@@ -22,14 +22,12 @@
     $item->pname = $data->pname;
     $item->pdes = $data->pdes;
     $item->pfiles = $data->pfiles;
-    $item->pstartdate = $data->pstartdate; 
-    $item->penddate = $data->penddate; 
-    
-    if($item->updateRoles()){
-        echo json_encode("Employee data updated.");
+    $item->pstartdate = $data->pstartdate;
+    $item->penddate = $data->penddate;
 
+    if($item->updateProject()){
+        echo json_encode("Employee data updated.");
     } else{
         echo json_encode("Data could not be updated");
-      
     }
 ?>

@@ -16,17 +16,17 @@
     $data = json_decode(file_get_contents("php://input"));
     
     $item->roleid = $data->roleid;
+    
     // employee values
     $item->adminid = $data->adminid;
     $item->managerid = $data->managerid;
     $item->clientid = $data->clientid;
-    $item->employeeid= $data->employeeid; 
+    $item->employeeid = $data->employeeid; 
     
     if($item->updateRoles()){
         echo json_encode("Employee data updated.");
-
     } else{
         echo json_encode("Data could not be updated");
-     
+        echo print_r($item);
     }
 ?>

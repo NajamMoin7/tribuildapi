@@ -16,11 +16,13 @@
     $data = json_decode(file_get_contents("php://input"));
     
     // $item->id = $data->id;
-    // $item->uid = $data->uid;
+    $item->uid = $data->uid;
     
     if($item->deleteUsers()){
         echo json_encode("Employee deleted.");
+        echo print_r($data);
     } else{
         echo json_encode("Data could not be deleted");
+        echo print_r($data);
     }
 ?>
