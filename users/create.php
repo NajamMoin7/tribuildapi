@@ -6,6 +6,7 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     include_once '../config/database.php';
     include_once '../class/user.php';
+    
     $database = new Database();
     $db = $database->getConnection();
     $item = new User($db);
@@ -18,10 +19,10 @@
     
     if($item->createUsers()){
         echo 'Employee created successfully.';
-        echo print_r($item);
+   
     } else{
         echo 'Employee could not be created.';
-        echo var_dump($item);
+     
         
     }
 ?>
