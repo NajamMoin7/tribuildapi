@@ -40,7 +40,6 @@ class Project
                     pstartdate = :pstartdate,
                     penddate = :penddate";
 
-
         $stmt = $this->conn->prepare($sqlQuery);
 
         // sanitize
@@ -133,9 +132,9 @@ class Project
         $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE pid = ?";
         $stmt = $this->conn->prepare($sqlQuery);
     
-        $this->id=htmlspecialchars(strip_tags($this->pid));
+        $this->pid=htmlspecialchars(strip_tags($this->pid));
     
-        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(1, $this->pid);
     
         if($stmt->execute()){
             return true;

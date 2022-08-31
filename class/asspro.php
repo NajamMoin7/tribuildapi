@@ -27,12 +27,12 @@
             $sqlQuery = "INSERT INTO
                         ". $this->db_table ."
                     SET  
-                    managerid = :managerid, 
-                    employeeid = :employeeid, 
-                    adminid = :adminid,
-                    pid = :pid";
+                        managerid = :managerid, 
+                        employeeid = :employeeid, 
+                        adminid = :adminid,
+                        pid = :pid";
                    
-        
+    
             $stmt = $this->conn->prepare($sqlQuery);
         
             // sanitize
@@ -82,7 +82,7 @@
         public function updateRoles(){
             $sqlQuery = "UPDATE
                         ". $this->db_table ."
-                    SET 
+                    SET     
                         managerid = :managerid, 
                         employeeid = :employeeid, 
                         adminid = :adminid, 
@@ -99,11 +99,11 @@
             $this->asspid=htmlspecialchars(strip_tags($this->asspid));
         
             // bind data
-            $stmt->bindParam("managerid:", $this->managerid);
-            $stmt->bindParam("employeeid:", $this->employeeid);
-            $stmt->bindParam("adminid:", $this->adminid);
-            $stmt->bindParam("pid:", $this->pid);
-            $stmt->bindParam("asspid:", $this->asspid);
+            $stmt->bindParam(":managerid", $this->managerid);
+            $stmt->bindParam(":employeeid", $this->employeeid);
+            $stmt->bindParam(":adminid", $this->adminid);
+            $stmt->bindParam(":pid", $this->pid);
+            $stmt->bindParam(":asspid", $this->asspid);
     
         
             if($stmt->execute()){
@@ -116,9 +116,9 @@
             $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE asspid = ? ";
             $stmt = $this->conn->prepare($sqlQuery);
         
-            $this->asspid=htmlspecialchars(strip_tags($this->asspid));
+            $this->id=htmlspecialchars(strip_tags($this->asspid));
         
-            $stmt->bindParam(1, $this->asspid);
+            $stmt->bindParam(1, $this->id);
         
             if($stmt->execute()){
                 return true;

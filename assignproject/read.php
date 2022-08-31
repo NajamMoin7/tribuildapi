@@ -9,8 +9,7 @@
     $items = new Asspro($db);
     $stmt = $items->getRoles();
     $itemCount = $stmt->rowCount();
-    // echo print_r($items);
-    echo json_encode($itemCount);
+    
     if($itemCount > 0){
         
         $employeeArr = array();

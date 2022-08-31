@@ -20,7 +20,7 @@
     
     if($item->deleteProject()){
         echo json_encode("Employee deleted.");
-        echo print_r($item);
+         
     } else{
         echo json_encode("Data could not be deleted");
     }

@@ -9,8 +9,7 @@
     $items = new Role($db);
     $stmt = $items->getRoles();
     $itemCount = $stmt->rowCount();
-    // echo print_r($items);
-    echo json_encode($itemCount);
+     
     if($itemCount > 0){
         
         $employeeArr = array();
@@ -19,11 +18,8 @@
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
             $e = array(
-                "roleid" => $roleid,
-                "adminid" => $adminid,
-                "managerid" => $managerid,
-                "clientid" => $clientid,
-                "employeeid" => $employeeid,
+                "roleid" => $roleid, 
+                "name" => $name, 
             );
             array_push($employeeArr["body"], $e);
         }

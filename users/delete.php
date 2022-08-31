@@ -20,9 +20,9 @@
     
     if($item->deleteUsers()){
         echo json_encode("Employee deleted.");
-        echo print_r($data);
+        
     } else{
         echo json_encode("Data could not be deleted");
-        echo print_r($data);
+      
     }
 ?>

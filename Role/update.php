@@ -18,15 +18,12 @@
     $item->roleid = $data->roleid;
     
     // employee values
-    $item->adminid = $data->adminid;
-    $item->managerid = $data->managerid;
-    $item->clientid = $data->clientid;
-    $item->employeeid = $data->employeeid; 
+    $item->name = $data->name;  
     
     if($item->updateRoles()){
         echo json_encode("Employee data updated.");
     } else{
         echo json_encode("Data could not be updated");
-        echo print_r($item);
+       
     }
 ?>

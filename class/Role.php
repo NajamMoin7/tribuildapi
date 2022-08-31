@@ -7,10 +7,7 @@ class Role
     private $db_table = "role";
     // Columns
     public $roleid;
-    public $adminid;
-    public $managerid;
-    public $clientid;
-    public $employeeid;
+    public $name; 
 
     // Db connection
     public function __construct($db)
@@ -20,7 +17,7 @@ class Role
     // GET ALL
     public function getRoles()
     {
-        $sqlQuery = "SELECT `roleid`, `adminid`, `managerid`, `clientid`, `employeeid` FROM " . $this->db_table . "";
+        $sqlQuery = "SELECT `roleid`, `name` FROM " . $this->db_table . "";
         $stmt = $this->conn->prepare($sqlQuery);
         $stmt->execute();
         return $stmt;
@@ -31,28 +28,18 @@ class Role
         $sqlQuery = "INSERT INTO
                         " . $this->db_table . "
                     SET
-                    adminid= :adminid, 
-                    managerid = :managerid, 
-                    clientid = :clientid, 
-                    employeeid = :employeeid";
+                    name= :name";
 
 
         $stmt = $this->conn->prepare($sqlQuery);
 
         // sanitize
 
-        $this->adminid = htmlspecialchars(strip_tags($this->adminid));
-        $this->managerid = htmlspecialchars(strip_tags($this->managerid));
-        $this->clientid = htmlspecialchars(strip_tags($this->clientid));
-        $this->employeeid = htmlspecialchars(strip_tags($this->employeeid));
-
+        $this->name = htmlspecialchars(strip_tags($this->name)); 
         // bind data
 
-        $stmt->bindParam(":adminid", $this->adminid);
-        $stmt->bindParam(":managerid", $this->managerid);
-        $stmt->bindParam(":clientid", $this->clientid);
-        $stmt->bindParam(":employeeid", $this->employeeid);
-
+        $stmt->bindParam(":name", $this->name);
+         
         if ($stmt->execute()) {
             return true;
         }
@@ -62,7 +49,7 @@ class Role
     public function getSingleRoles()
     {
         $sqlQuery = "SELECT
-                       `roleid`, `adminid`, `managerid`, `clientid`, `employeeid`
+                       `roleid`, `name`
                       FROM
                        " . $this->db_table . "
                     WHERE 
@@ -73,10 +60,7 @@ class Role
         $stmt->execute();
         $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $this->adminid = $dataRow['adminid'];
-        $this->managerid = $dataRow['managerid'];
-        $this->clientid = $dataRow['clientid'];
-        $this->employeeid = $dataRow['employeeid'];
+        $this->name = $dataRow['name']; 
     }
     // UPDATE
     public function updateRoles()
@@ -84,26 +68,17 @@ class Role
         $sqlQuery = "UPDATE
             " . $this->db_table . "
         SET
-            adminid = :adminid, 
-            managerid = :managerid, 
-            clientid = :clientid, 
-            employeeid = :employeeid 
+            name = :name  
         WHERE 
             roleid = :roleid";
 
         $stmt = $this->conn->prepare($sqlQuery);
 
-        $this->adminid = htmlspecialchars(strip_tags($this->adminid));
-        $this->managerid = htmlspecialchars(strip_tags($this->managerid));
-        $this->clientid = htmlspecialchars(strip_tags($this->clientid));
-        $this->employeeid = htmlspecialchars(strip_tags($this->employeeid));
+        $this->name = htmlspecialchars(strip_tags($this->name));
         $this->roleid = htmlspecialchars(strip_tags($this->roleid));
 
         // bind data
-        $stmt->bindParam(":adminid", $this->adminid);
-        $stmt->bindParam(":managerid", $this->managerid);
-        $stmt->bindParam(":clientid", $this->clientid);
-        $stmt->bindParam(":employeeid", $this->employeeid);
+        $stmt->bindParam(":name", $this->name); 
         $stmt->bindParam(":roleid", $this->roleid);
 
         if ($stmt->execute()) {
@@ -117,9 +92,9 @@ class Role
         $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE roleid = ?";
         $stmt = $this->conn->prepare($sqlQuery);
     
-        $this->id=htmlspecialchars(strip_tags($this->roleid));
+        $this->roleid=htmlspecialchars(strip_tags($this->roleid));
     
-        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(1, $this->roleid);
     
         if($stmt->execute()){
             return true;

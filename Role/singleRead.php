@@ -12,15 +12,11 @@
     $item->roleid = isset($_GET['roleid']) ? $_GET['roleid'] : die();
   
     $item->getSingleRoles();
-    if($item->adminid != null){
+    if($item->name != null){
         // create array
         $emp_arr = array(
             "roleid" =>  $item->roleid,
-            "adminid" => $item->adminid,
-            "managerid" => $item->managerid,
-            "clientid" => $item->clientid,
-            "employeeid" => $item->employeeid,
-            
+            "name" => $item->name,
         );
       
         http_response_code(200);

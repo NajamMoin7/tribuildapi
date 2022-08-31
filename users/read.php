@@ -9,8 +9,7 @@
     $items = new User($db);
     $stmt = $items->getUsers();
     $itemCount = $stmt->rowCount(); 
-    
-    echo json_encode($itemCount);
+     
     if($itemCount > 0){
         
         $UsersArr = array();

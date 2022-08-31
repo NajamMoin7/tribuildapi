@@ -6,8 +6,10 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     include_once '../config/database.php';
     include_once '../class/asspro.php';
+    
     $database = new Database();
     $db = $database->getConnection();
+    
     $item = new Asspro($db);
     $data = json_decode(file_get_contents("php://input"));
     $item->managerid = $data->managerid;
@@ -19,7 +21,7 @@
         echo 'Employee created successfully.';
          
     } else{
-        echo 'Employee could not be created.';
+        echo 'Employee could not be created.'; 
         
         
     }

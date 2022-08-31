@@ -10,10 +10,7 @@
     $db = $database->getConnection();
     $item = new Role($db);
     $data = json_decode(file_get_contents("php://input"));
-    $item->adminid = $data->adminid;
-    $item->managerid = $data->managerid;
-    $item->clientid = $data->clientid;
-    $item->employeeid = $data->employeeid;
+    $item->name = $data->name; 
     
     if($item->createRoles()){
         echo 'Employee created successfully.';
